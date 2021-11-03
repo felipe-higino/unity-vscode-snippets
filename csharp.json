@@ -1,0 +1,106 @@
+{
+	// Place your snippets for csharp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Unique": {
+		"prefix": "uni",
+		"body": [
+			"Unique<${TM_FILENAME_BASE}>.Generate(this);"
+		],
+		"description": "insert it inside an awake to make it unique"
+	},
+	"Component": {
+		"prefix": "compinterface",
+		"body": [
+			"public interface ${TM_FILENAME_BASE}",
+			"{",
+			"",
+			"}",
+			"",
+			"public static class ${TM_FILENAME_BASE}Extensions",
+			"{",
+			"    public static void Method(this ${TM_FILENAME_BASE} component)",
+			"    {",
+			"",
+			"    }",
+			"}"
+		],
+		"description": ""
+	},
+	"editbtn": {
+		"prefix": "editbtn",
+		"body": [
+			"#if UNITY_EDITOR",
+			"using System.Collections;",
+			"using System.Collections.Generic;",
+			"using UnityEngine;",
+			"using UnityEditor;",
+			"",
+			"namespace $1",
+			"{",
+			"    [CustomEditor(typeof(${class}))]",
+			"    public class ${class}Editor : Editor",
+			"    {",
+			"        public override void OnInspectorGUI()",
+			"        {",
+			"            if (Application.isPlaying)",
+			"            {",
+			"",
+			"                var obj = (${class})target;",
+			"                if (GUILayout.Button(\"button\"))",
+			"                {",
+			"                }",
+			"                GUILayout.Space(15);",
+			"            }",
+			"            base.OnInspectorGUI();",
+			"        }",
+			"    }",
+			"}",
+			"",
+			"#endif"
+		],
+		"description": ""
+	},
+	"": {
+		"prefix": "cached",
+		"body": [
+			"public ${type} _${inst} = null;",
+			"public ${type} ${inst}",
+			"{",
+			"    get",
+			"    {",
+			"        if (null == _${inst})",
+			"            _${inst} = GetComponent<${type}>();",
+			"        return _${inst};",
+			"    }",
+			"}"
+		],
+		"description": ""
+	},
+	"inlineditr": {
+		"prefix": "inlineditr",
+		"body": [
+			"#if UNITY_EDITOR",
+			"using UnityEditor;",
+			"#endif",
+			"",
+			"#if UNITY_EDITOR",
+			"        [CustomEditor(typeof(${TM_FILENAME_BASE}))]",
+			"        public class ${TM_FILENAME_BASE}Editor : Editor",
+			"        {",
+			"            public override void OnInspectorGUI()",
+			"            {",
+			"                this.DrawMonobehaviour<${TM_FILENAME_BASE}>();",
+			"                var script = (${TM_FILENAME_BASE})target;",
+			"",
+			"                script.nestedClass.myinteger = EditorGUILayout.IntField(\"my integer\", script.nestedClass.myinteger);",
+			"                this.DrawPropertyNested(\"my strings\", \"nestedClass\", \"mystrings\");",
+			"            }",
+			"        }",
+			"#endif"
+		],
+		"description": ""
+	}
+}
